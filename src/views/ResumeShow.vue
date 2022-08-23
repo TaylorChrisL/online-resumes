@@ -1,4 +1,5 @@
 <script>
+// eslint-disable-next-line no-unused-vars
 import axios from "axios";
 
 export default {
@@ -73,9 +74,17 @@ export default {
 <template>
   <div class="resume-show">
     <div class="container">
-      <h1>TESTING</h1>
+      <h1>Resume</h1>
       <p>{{ resume.first_name }}</p>
       <p>{{ resume.last_name }}</p>
+      <p>{{ resume.email }}</p>
+      <p>{{ resume.phone_number }}</p>
+      <p>{{ resume.bio }}</p>
+      <p>{{ resume.twitter_handle }}</p>
+      <p>{{ resume.website_url }}</p>
+      <p>{{ resume.online_resume_url }}</p>
+      <p>{{ resume.github_url }}</p>
+      <p>{{ resume.photo }}</p>
       <router-link to="/resumes">Back To All Resumes</router-link>
     </div>
   </div>
