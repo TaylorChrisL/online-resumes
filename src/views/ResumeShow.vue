@@ -19,27 +19,27 @@ export default {
         photo: "test.jpg",
         experience: [
           {
-            start_date: "2",
-            end_date: "2",
-            job_title: "boss",
-            company_name: "xyz",
-            details: "xyz",
+            start_date: "March 2019",
+            end_date: "March 2022",
+            job_title: "Boss",
+            company_name: "Spotify",
+            details: "Music and stuff",
           },
           {
-            start_date: "2",
-            end_date: "2",
-            job_title: "janitor",
-            company_name: "lol",
-            details: "aaa",
+            start_date: "July 1999",
+            end_date: "December 2021",
+            job_title: "Janitor",
+            company_name: "School",
+            details: "Clean stuff",
           },
         ],
-        eduction: [
+        education: [
           {
-            start_date: "2",
-            end_date: "3",
-            degree: "cop",
-            university: "ucla",
-            details: "xyz",
+            start_date: "January 2020",
+            end_date: "May 2022",
+            degree: "Math",
+            university: "UCLA",
+            details: "numbers",
           },
           {
             start_date: "1",
@@ -49,7 +49,7 @@ export default {
             details: "xyz",
           },
         ],
-        skills: ["normal"],
+        skills: ["normal", "leader", "ruby", "Javascript"],
         capstone: [
           {
             name: "spotify",
@@ -74,18 +74,39 @@ export default {
 <template>
   <div class="resume-show">
     <div class="container">
-      <h1>Resume</h1>
-      <p>{{ resume.first_name }}</p>
-      <p>{{ resume.last_name }}</p>
-      <p>{{ resume.email }}</p>
-      <p>{{ resume.phone_number }}</p>
-      <p>{{ resume.bio }}</p>
-      <p>{{ resume.twitter_handle }}</p>
-      <p>{{ resume.website_url }}</p>
-      <p>{{ resume.online_resume_url }}</p>
-      <p>{{ resume.github_url }}</p>
-      <p>{{ resume.photo }}</p>
-      <router-link to="/resumes">Back To All Resumes</router-link>
+      <h1>{{ resume.first_name }} {{ resume.last_name }}'s Resume</h1>
+      <h2>Basic Info</h2>
+      <p>First Name: {{ resume.first_name }}</p>
+      <p>Last Name: {{ resume.last_name }}</p>
+      <p>Email: {{ resume.email }}</p>
+      <p>Phone Number: {{ resume.phone_number }}</p>
+      <p>Bio: {{ resume.bio }}</p>
+      <p>Twitter Handle: {{ resume.twitter_handle }}</p>
+      <p>Website Url: {{ resume.website_url }}</p>
+      <p>Online Resume Url: {{ resume.online_resume_url }}</p>
+      <p>GitHub URL: {{ resume.github_url }}</p>
+      <p>Photo: {{ resume.photo }}</p>
+      <h2>Experience</h2>
+      <div v-for="experience in resume.experience" v-bind:key="experience">
+        <p>Job Title: {{ experience.job_title }}</p>
+        <p>Start Date: {{ experience.start_date }}</p>
+        <p>End Date: {{ experience.end_date }}</p>
+        <p>Company Name: {{ experience.company_name }}</p>
+        <p>Details: {{ experience.details }}</p>
+      </div>
+      <h2>Education</h2>
+      <div v-for="education in resume.education" v-bind:key="education">
+        <p>University: {{ education.university }}</p>
+        <p>Degree: {{ education.degree }}</p>
+        <p>Details: {{ education.details }}</p>
+        <p>Start Date: {{ education.start_date }}</p>
+        <p>Graduated: {{ education.end_date }}</p>
+      </div>
+      <p>Skills:</p>
+      <div v-for="skill in resume.skills" v-bind:key="skill">
+        <p>{{ skill }}</p>
+      </div>
+      <router-link to="/">Back To All Resumes</router-link>
     </div>
   </div>
 </template>
