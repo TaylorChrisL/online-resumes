@@ -99,13 +99,13 @@ export default {
     //     console.log("All resumes:", this.resumes);
     //   });
     // },
-    // filterResumes: function () {
-    //   return this.resumes.filter((resume) => {
-    //     var lowerLast_name = resume.last_name.toLowerCase();
-    //     var lowerlast_nameFilter = this.last_nameFilter.toLowerCase();
-    //     return lowerLast_name.includes(lowerlast_nameFilter);
-    //   });
-    // },
+    filterResumes: function () {
+      return this.resumes.filter((resume) => {
+        var lowerLast_name = resume.last_name.toLowerCase();
+        var lowerlast_nameFilter = this.last_nameFilter.toLowerCase();
+        return lowerLast_name.includes(lowerlast_nameFilter);
+      });
+    },
   },
 };
 </script>
@@ -113,13 +113,15 @@ export default {
 <template>
   <h1>All Resumes</h1>
   Search by Last Name:
-  <input v-model="last_nameFilter" list="last_names" type="text" />
-  <div>
-    <li v-for="resume in resumes" v-bind:key="resume">
-      {{ resume.last_name }}
-      {{ resume.first_name }}
-      <p><img :src="resume.photo" /></p>
-    </li>
+  <input v-model="last_nameFilter" placeholder="Search resumes..." type="text" />
+  <div class="item resume" v-for="resume in filterResumes()" :key="resume">
+    {{ resume.last_name }}
+    {{ resume.first_name }}
+    <p><img :src="resume.photo" /></p>
   </div>
+  <div class="item error" v-if="last_nameFilter && !filterResumes().length">
+    <p>No results found!</p>
+  </div>
+  <div></div>
 </template>
 <style></style>
