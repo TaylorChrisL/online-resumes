@@ -59,6 +59,7 @@ export default {
           },
         ],
       },
+      skills_sentence: "",
     };
   },
   // created: function () {
@@ -82,9 +83,8 @@ export default {
       <p>Phone Number: {{ resume.phone_number }}</p>
       <p>Bio: {{ resume.bio }}</p>
       <p>Twitter Handle: {{ resume.twitter_handle }}</p>
-      <p>Website Url: {{ resume.website_url }}</p>
-      <p>Online Resume Url: {{ resume.online_resume_url }}</p>
-      <p>GitHub URL: {{ resume.github_url }}</p>
+      <p><a href="{{ resume.website_url }}">Website</a></p>
+      <p><a href="{{ resume.github_url }}">GitHub</a></p>
       <p>Photo: {{ resume.photo }}</p>
       <h2>Experience</h2>
       <div v-for="experience in resume.experience" v-bind:key="experience">
@@ -93,6 +93,7 @@ export default {
         <p>End Date: {{ experience.end_date }}</p>
         <p>Company Name: {{ experience.company_name }}</p>
         <p>Details: {{ experience.details }}</p>
+        <hr />
       </div>
       <h2>Education</h2>
       <div v-for="education in resume.education" v-bind:key="education">
@@ -102,10 +103,11 @@ export default {
         <p>Start Date: {{ education.start_date }}</p>
         <p>Graduated: {{ education.end_date }}</p>
       </div>
-      <p>Skills:</p>
-      <div v-for="skill in resume.skills" v-bind:key="skill">
-        <p>{{ skill }}</p>
-      </div>
+      <span>Skills:</span>
+      <span v-for="skill in resume.skills" v-bind:key="skill">
+        <span>/ {{ skill }}</span>
+      </span>
+      <div></div>
       <router-link to="/">Back To All Resumes</router-link>
     </div>
   </div>
