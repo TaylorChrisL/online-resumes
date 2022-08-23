@@ -1,4 +1,5 @@
 <template>
+  <div class="about">
   <div class="show">
     <h1>This page shows one resume.</h1>
   </div>
