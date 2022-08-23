@@ -18,7 +18,7 @@ export default {
 </script>
 
 <template>
-  <div class="resumes-show">
+  <div class="resume-show">
     <div class="container">
       <h1>TESTING</h1>
       <p>{{ resume.first_name }}</p>
