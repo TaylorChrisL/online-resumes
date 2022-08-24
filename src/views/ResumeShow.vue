@@ -12,11 +12,11 @@ export default {
         phone_number: 999,
         bio: "average guy",
         linkedin_url: "test.com",
-        twitter_handle: "@joeshmoe",
+        twitter_handle: "@DonaldTrump",
         website_url: "test.com",
         online_resume_url: "test.com",
         github_url: "test.com",
-        photo: "test.jpg",
+        photo: "http://dummyimage.com/204x100.png/cc0000/ffffff",
         experience: [
           {
             start_date: "December 2019",
@@ -73,63 +73,167 @@ export default {
 </script>
 
 <template>
-  <div class="resume-show">
-    <div class="container">
-      <h1>{{ resume.first_name }} {{ resume.last_name }}'s Resume</h1>
-      <hr />
-      <h2>Basic Info</h2>
-      <p>First Name: {{ resume.first_name }}</p>
-      <p>Last Name: {{ resume.last_name }}</p>
-      <p>Email: {{ resume.email }}</p>
-      <p>Phone Number: {{ resume.phone_number }}</p>
-      <p>Bio: {{ resume.bio }}</p>
-      <a
-        class="twitter-timeline"
-        :href="`https://twitter.com/${resume.twitter_handle}`"
-        data-width="300"
-        data-height="400"
-      >
-        Tweets by {{ resume.twitter_handle }}
-      </a>
-      <p><a href="{{ resume.website_url }}">Website</a></p>
-      <p><a href="{{ resume.github_url }}">GitHub</a></p>
-      <p>Photo: {{ resume.photo }}</p>
-      <hr />
-      <h2>Experience</h2>
-      <div v-for="experience in resume.experience" v-bind:key="experience">
-        <p>Job Title: {{ experience.job_title }}</p>
-        <p>Start Date: {{ experience.start_date }}</p>
-        <p>End Date: {{ experience.end_date }}</p>
-        <p>Company Name: {{ experience.company_name }}</p>
-        <p>Details: {{ experience.details }}</p>
-        <br />
+  <article class="resume-wrapper text-center position-relative">
+    <div class="resume-wrapper-inner mx-auto text-start bg-white shadow-lg">
+      <header class="resume-header pt-4 pt-md-0">
+        <div class="row">
+          <div class="col-block col-md-auto resume-picture-holder text-center text-md-start">
+            <img class="picture" :src="resume.photo" alt="" />
+          </div>
+          <!--//col-->
+          <div class="col">
+            <div class="row p-4 justify-content-center justify-content-md-between">
+              <div class="primary-info col-auto">
+                <h1 class="name mt-0 mb-1 text-white text-uppercase text-uppercase">
+                  {{ resume.first_name + " " + resume.last_name }}
+                </h1>
+                <div class="title mb-3">Full Stack Developer</div>
+                <ul class="list-unstyled">
+                  <li class="mb-2">
+                    <a class="text-link" href="#">
+                      <i class="far fa-envelope fa-fw me-2" data-fa-transform="grow-3"></i>
+                      {{ resume.email }}
+                    </a>
+                  </li>
+                  <li>
+                    <a class="text-link" href="#">
+                      <i class="fas fa-mobile-alt fa-fw me-2" data-fa-transform="grow-6"></i>
+                      {{ resume.phone_number }}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <!--//primary-info-->
+              <div class="secondary-info col-auto mt-2">
+                <ul class="resume-social list-unstyled">
+                  <li class="mb-3">
+                    <a class="text-link" :href="resume.linkedin_url">
+                      <span class="fa-container text-center me-2"><i class="fab fa-linkedin-in fa-fw"></i></span>
+                      {{ resume.linkedin_url }}
+                    </a>
+                  </li>
+                  <li class="mb-3">
+                    <a class="text-link" :href="resume.github_url">
+                      <span class="fa-container text-center me-2"><i class="fab fa-github-alt fa-fw"></i></span>
+                      {{ resume.github_url }}
+                    </a>
+                  </li>
+                  <li>
+                    <a class="text-link" :href="resume.website_url">
+                      <span class="fa-container text-center me-2"><i class="fas fa-globe"></i></span>
+                      {{ resume.website_url }}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <!--//secondary-info-->
+            </div>
+            <!--//row-->
+          </div>
+          <!--//col-->
+        </div>
+        <!--//row-->
+      </header>
+      <div class="resume-body p-5">
+        <section class="resume-section summary-section mb-5">
+          <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">About Me</h2>
+          <div class="resume-section-content">
+            <p class="mb-0">{{ resume.bio }}</p>
+          </div>
+        </section>
+        <!--//summary-section-->
+        <div class="row">
+          <div class="col-lg-9">
+            <section class="resume-section experience-section mb-5">
+              <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Work Experience</h2>
+              <div class="resume-section-content">
+                <div class="resume-timeline position-relative">
+                  <article
+                    class="resume-timeline-item position-relative pb-5"
+                    v-for="experience in resume.experience"
+                    :key="experience"
+                  >
+                    <div class="resume-timeline-item-header mb-2">
+                      <div class="d-flex flex-column flex-md-row">
+                        <h3 class="resume-position-title font-weight-bold mb-1">{{ experience.job_title }}</h3>
+                        <div class="resume-company-name ms-auto">{{ experience.company_name }}</div>
+                      </div>
+                      <!--//row-->
+                      <div class="resume-position-time">{{ experience.start_date + " - " + experience.end_date }}</div>
+                    </div>
+                    <!--//resume-timeline-item-header-->
+                    <div class="resume-timeline-item-desc">
+                      <p>{{ experience.details }}.</p>
+                    </div>
+                    <!--//resume-timeline-item-desc-->
+                  </article>
+                  <!--//resume-timeline-item-->
+                </div>
+                <!--//resume-timeline-->
+              </div>
+            </section>
+            <!--//experience-section-->
+          </div>
+          <div class="col-lg-3">
+            <section class="resume-section skills-section mb-5">
+              <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Skills</h2>
+              <div class="resume-section-content">
+                <div class="resume-skill-item">
+                  <ul class="list-unstyled mb-4">
+                    <li class="mb-2" v-for="skill in resume.skills" :key="skill">
+                      <div class="resume-skill-name">{{ skill }}</div>
+                    </li>
+                  </ul>
+                </div>
+                <!--//resume-skill-item-->
+              </div>
+              <!--resume-section-content-->
+            </section>
+            <!--//skills-section-->
+            <section class="resume-section education-section mb-5">
+              <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Education</h2>
+              <div class="resume-section-content">
+                <ul class="list-unstyled">
+                  <li class="mb-2" v-for="education in resume.education" :key="education">
+                    <div class="resume-degree font-weight-bold">{{ education.degree }}</div>
+                    <div class="resume-degree-org">{{ education.university }}</div>
+                    <div class="resume-degree-time">{{ education.start_date + " - " + education.end_date }}</div>
+                  </li>
+                </ul>
+              </div>
+            </section>
+            <!--//education-section-->
+            <section class="resume-section reference-section mb-5">
+              <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Projects</h2>
+              <div class="resume-section-content">
+                <ul class="list-unstyled resume-awards-list">
+                  <li class="mb-2 ps-4 position-relative" v-for="project in resume.capstone" :key="project">
+                    <div class="resume-award-name">{{ project.name }}</div>
+                    <div class="resume-award-desc">{{ project.description }}</div>
+                  </li>
+                </ul>
+              </div>
+            </section>
+            <!--//interests-section-->
+            <section class="resume-section reference-section mb-5">
+              <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">TWITTER</h2>
+              <div class="resume-section-content"></div>
+              <div>
+                <a
+                  class="twitter-timeline"
+                  :href="`https://twitter.com/${resume.twitter_handle}`"
+                  data-width="300"
+                  data-height="400"
+                ></a>
+              </div>
+            </section>
+          </div>
+        </div>
+        <!--//row-->
       </div>
-      <h2>Education</h2>
-      <div v-for="education in resume.education" v-bind:key="education">
-        <p>University: {{ education.university }}</p>
-        <p>Degree: {{ education.degree }}</p>
-        <p>Details: {{ education.details }}</p>
-        <p>Start Date: {{ education.start_date }}</p>
-        <p>Graduated: {{ education.end_date }}</p>
-        <br />
-      </div>
-      <hr />
-      <span>Skills:</span>
-      <span v-for="skill in resume.skills" v-bind:key="skill">
-        <span>{{ skill }}</span>
-      </span>
-      <div></div>
-      <hr />
-      <h2>Capstone Project</h2>
-      <div v-for="capstone in resume.capstone" v-bind:key="capstone">
-        <p>Name: {{ capstone.name }}</p>
-        <p>Description: {{ capstone.description }}</p>
-        <p><a :href="capstone.url">See My Project!</a></p>
-        <img :src="capstone.screenshot" />
-      </div>
-      <router-link to="/">Back To All Resumes</router-link>
+      <!--//resume-body-->
     </div>
-  </div>
+  </article>
 </template>
 
 <style></style>
