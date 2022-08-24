@@ -83,7 +83,14 @@ export default {
       <p>Email: {{ resume.email }}</p>
       <p>Phone Number: {{ resume.phone_number }}</p>
       <p>Bio: {{ resume.bio }}</p>
-      <p>Twitter Handle: {{ resume.twitter_handle }}</p>
+      <a
+        class="twitter-timeline"
+        :href="`https://twitter.com/${resume.twitter_handle}`"
+        data-width="300"
+        data-height="400"
+      >
+        Tweets by {{ resume.twitter_handle }}
+      </a>
       <p><a href="{{ resume.website_url }}">Website</a></p>
       <p><a href="{{ resume.github_url }}">GitHub</a></p>
       <p>Photo: {{ resume.photo }}</p>
