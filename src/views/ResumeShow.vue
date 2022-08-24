@@ -182,7 +182,6 @@ export default {
                   <ul class="list-unstyled mb-4">
                     <li class="mb-2" v-for="skill in resume.skills" :key="skill">
                       <div class="resume-skill-name">{{ skill }}</div>
-                      <div class="progress resume-progress"></div>
                     </li>
                   </ul>
                 </div>
