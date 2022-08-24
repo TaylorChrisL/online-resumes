@@ -19,15 +19,15 @@ export default {
         photo: "test.jpg",
         experience: [
           {
-            start_date: "March 2019",
-            end_date: "March 2022",
+            start_date: "December 2019",
+            end_date: "July 2022",
             job_title: "Boss",
             company_name: "Spotify",
             details: "Music and stuff",
           },
           {
             start_date: "July 1999",
-            end_date: "December 2021",
+            end_date: "March 2019",
             job_title: "Janitor",
             company_name: "School",
             details: "Clean stuff",
@@ -35,8 +35,8 @@ export default {
         ],
         education: [
           {
-            start_date: "January 2020",
-            end_date: "May 2022",
+            start_date: "January 1994",
+            end_date: "May 1998 ",
             degree: "Math",
             university: "UCLA",
             details: "numbers",
@@ -45,17 +45,17 @@ export default {
             start_date: "1",
             end_date: "2",
             degree: "job",
-            university: "school",
+            university: "Some school",
             details: "xyz",
           },
         ],
-        skills: ["normal", "leader", "ruby", "Javascript"],
+        skills: ["Vue.js", "HTML", "CSS", "Ruby", "Javascript"],
         capstone: [
           {
-            name: "spotify",
-            description: "listen",
-            url: "t.com",
-            screenshot: "g.jpg",
+            name: "Spotify App",
+            description: "Find new music based on your favorite songs!",
+            url: "https://open.spotify.com/",
+            screenshot: "https://developer.spotify.com/assets/branding-guidelines/icon3@2x.png",
           },
         ],
       },
@@ -76,6 +76,7 @@ export default {
   <div class="resume-show">
     <div class="container">
       <h1>{{ resume.first_name }} {{ resume.last_name }}'s Resume</h1>
+      <hr />
       <h2>Basic Info</h2>
       <p>First Name: {{ resume.first_name }}</p>
       <p>Last Name: {{ resume.last_name }}</p>
@@ -86,6 +87,7 @@ export default {
       <p><a href="{{ resume.website_url }}">Website</a></p>
       <p><a href="{{ resume.github_url }}">GitHub</a></p>
       <p>Photo: {{ resume.photo }}</p>
+      <hr />
       <h2>Experience</h2>
       <div v-for="experience in resume.experience" v-bind:key="experience">
         <p>Job Title: {{ experience.job_title }}</p>
@@ -93,7 +95,7 @@ export default {
         <p>End Date: {{ experience.end_date }}</p>
         <p>Company Name: {{ experience.company_name }}</p>
         <p>Details: {{ experience.details }}</p>
-        <hr />
+        <br />
       </div>
       <h2>Education</h2>
       <div v-for="education in resume.education" v-bind:key="education">
@@ -102,12 +104,22 @@ export default {
         <p>Details: {{ education.details }}</p>
         <p>Start Date: {{ education.start_date }}</p>
         <p>Graduated: {{ education.end_date }}</p>
+        <br />
       </div>
+      <hr />
       <span>Skills:</span>
       <span v-for="skill in resume.skills" v-bind:key="skill">
-        <span>/ {{ skill }}</span>
+        <span>{{ skill }}</span>
       </span>
       <div></div>
+      <hr />
+      <h2>Capstone Project</h2>
+      <div v-for="capstone in resume.capstone" v-bind:key="capstone">
+        <p>Name: {{ capstone.name }}</p>
+        <p>Description: {{ capstone.description }}</p>
+        <p><a :href="capstone.url">See My Project!</a></p>
+        <img :src="capstone.screenshot" />
+      </div>
       <router-link to="/">Back To All Resumes</router-link>
     </div>
   </div>
