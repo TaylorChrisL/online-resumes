@@ -119,7 +119,7 @@ export default {
     <div class="container">
       <div class="row no-gutters">
         <div class="col-lg-4 col-md-6 content-item" v-for="resume in filterResumes()" :key="resume">
-          <span><img :src="resume.photo" /></span>
+          <span><img :src="resume.photo" hight="200" width="200" /></span>
           <h4>{{ resume.first_name + " " + resume.last_name }}</h4>
           <p>{{ resume.skills }}</p>
         </div>
