@@ -152,7 +152,11 @@ export default {
             <span><img :src="resume.photo" hight="200" width="200" /></span>
             <h4>{{ resume.first_name + " " + resume.last_name }}</h4>
           </router-link>
-          <p>{{ resume.skills }}</p>
+          <ul class="list-unstyled">
+            <li class="mb-2" v-for="skill in resume.skills" :key="skill">
+              {{ skill }}
+            </li>
+          </ul>
         </div>
       </div>
     </div>
