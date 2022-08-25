@@ -114,11 +114,18 @@ export default {
   <h1>All Resumes</h1>
   Search by Last Name:
   <input v-model="last_nameFilter" placeholder="Search resumes..." type="text" />
-  <div class="item resume" v-for="resume in filterResumes()" :key="resume">
-    {{ resume.last_name }}
-    {{ resume.first_name }}
-    <p><img :src="resume.photo" /></p>
-  </div>
+
+  <section id="why-us" class="why-us">
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="col-lg-4 col-md-6 content-item" v-for="resume in filterResumes()" :key="resume">
+          <span><img :src="resume.photo" /></span>
+          <h4>{{ resume.first_name + " " + resume.last_name }}</h4>
+          <p>{{ resume.skills }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
   <div class="item error" v-if="last_nameFilter && !filterResumes().length">
     <p>No results found!</p>
   </div>
