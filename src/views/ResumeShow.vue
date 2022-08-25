@@ -6,61 +6,6 @@ export default {
   data: function () {
     return {
       resume: {},
-      // resume: {
-      //   first_name: "Joe",
-      //   last_name: "Shmoe",
-      //   email: "joeshmoe@example.com",
-      //   phone_number: 999,
-      //   bio: "average guy",
-      //   linkedin_url: "test.com",
-      //   twitter_handle: "@DonaldTrump",
-      //   website_url: "test.com",
-      //   online_resume_url: "test.com",
-      //   github_url: "test.com",
-      //   photo: "http://dummyimage.com/204x100.png/cc0000/ffffff",
-      //   experience: [
-      //     {
-      //       start_date: "December 2019",
-      //       end_date: "July 2022",
-      //       job_title: "Boss",
-      //       company_name: "Spotify",
-      //       details: "Music and stuff",
-      //     },
-      //     {
-      //       start_date: "July 1999",
-      //       end_date: "March 2019",
-      //       job_title: "Janitor",
-      //       company_name: "School",
-      //       details: "Clean stuff",
-      //     },
-      //   ],
-      //   education: [
-      //     {
-      //       start_date: "January 1994",
-      //       end_date: "May 1998 ",
-      //       degree: "Math",
-      //       university: "UCLA",
-      //       details: "numbers",
-      //     },
-      //     {
-      //       start_date: "1",
-      //       end_date: "2",
-      //       degree: "job",
-      //       university: "Some school",
-      //       details: "xyz",
-      //     },
-      //   ],
-      //   skills: ["Vue.js", "HTML", "CSS", "Ruby", "Javascript"],
-      //   capstone: [
-      //     {
-      //       name: "Spotify App",
-      //       description: "Find new music based on your favorite songs!",
-      //       url: "https://open.spotify.com/",
-      //       screenshot: "https://developer.spotify.com/assets/branding-guidelines/icon3@2x.png",
-      //     },
-      //   ],
-      // },
-      // skills_sentence: "",
     };
   },
   created: function () {
@@ -234,6 +179,7 @@ export default {
       </div>
       <!--//resume-body-->
     </div>
+    <a class="btn btn-primary btn-lg" href="http://localhost:8080/" role="button">Show All Resumes</a>
   </article>
 </template>
 
