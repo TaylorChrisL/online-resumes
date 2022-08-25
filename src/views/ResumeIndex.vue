@@ -91,9 +91,6 @@ export default {
       currentResume: {},
     };
   },
-  updated: function () {
-    this.getAllSkills();
-  },
   created: function () {
     this.indexResumes();
   },
@@ -102,6 +99,7 @@ export default {
       axios.get("http://localhost:3000/students.json").then((response) => {
         this.resumes = response.data;
         console.log("All resumes:", this.resumes);
+        this.getAllSkills();
       });
     },
     filterResumes: function () {
@@ -113,13 +111,10 @@ export default {
     },
     filterSkills: function () {
       return this.resumes.filter((resume) => {
-        var resumeSkill = [];
-        resume.skills.forEach((skill) => {
-          var lowerSkill = skill.toLowerCase();
-          resumeSkill.push(lowerSkill);
-        });
         var lowerSkillFilter = this.skillFilter.toLowerCase();
-        return resumeSkill.includes(lowerSkillFilter);
+        return resume.skills.some((element) => {
+          return element.includes(lowerSkillFilter);
+        });
       });
     },
     getAllSkills: function () {
@@ -141,22 +136,41 @@ export default {
   <h1>All Resumes</h1>
   Search by Last Name:
   <input v-model="last_nameFilter" placeholder="Search resumes..." type="text" />
-  <!-- Search by skill: -->
-  <!-- <input v-model="skillFilter" placeholder="Search resumes..." type="text" /> -->
+  Search by skill:
+  <input v-model="skillFilter" placeholder="Search resumes..." type="text" />
 
   <section id="why-us" class="why-us">
-    <div class="container">
-      <div class="row no-gutters">
-        <div class="col-lg-4 col-md-6 content-item" v-for="resume in filterResumes()" :key="resume">
-          <router-link :to="`/resumes/${resume.id}`">
-            <span><img :src="resume.photo" hight="200" width="200" /></span>
-            <h4>{{ resume.first_name + " " + resume.last_name }}</h4>
-          </router-link>
-          <ul class="list-unstyled">
-            <li class="mb-2" v-for="skill in resume.skills" :key="skill">
-              {{ skill }}
-            </li>
-          </ul>
+    <div v-if="skillFilter">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-lg-4 col-md-6 content-item" v-for="resume in filterSkills()" :key="resume">
+            <router-link :to="`/resumes/${resume.id}`">
+              <span><img :src="resume.photo" hight="200" width="200" /></span>
+              <h4>{{ resume.first_name + " " + resume.last_name }}</h4>
+            </router-link>
+            <ul class="list-unstyled">
+              <li class="mb-2" v-for="skill in resume.skills" :key="skill">
+                {{ skill }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-else>
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-lg-4 col-md-6 content-item" v-for="resume in filterResumes()" :key="resume">
+            <router-link :to="`/resumes/${resume.id}`">
+              <span><img :src="resume.photo" hight="200" width="200" /></span>
+              <h4>{{ resume.first_name + " " + resume.last_name }}</h4>
+            </router-link>
+            <ul class="list-unstyled">
+              <li class="mb-2" v-for="skill in resume.skills" :key="skill">
+                {{ skill }}
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
