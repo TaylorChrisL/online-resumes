@@ -86,8 +86,13 @@ export default {
       //   },
       // ],
       last_nameFilter: "",
+      skillFilter: "",
+      allSkills: [],
       currentResume: {},
     };
+  },
+  updated: function () {
+    this.getAllSkills();
   },
   created: function () {
     this.indexResumes();
@@ -106,6 +111,28 @@ export default {
         return lowerLast_name.includes(lowerlast_nameFilter);
       });
     },
+    filterSkills: function () {
+      return this.resumes.filter((resume) => {
+        var resumeSkill = [];
+        resume.skills.forEach((skill) => {
+          var lowerSkill = skill.toLowerCase();
+          resumeSkill.push(lowerSkill);
+        });
+        var lowerSkillFilter = this.skillFilter.toLowerCase();
+        return resumeSkill.includes(lowerSkillFilter);
+      });
+    },
+    getAllSkills: function () {
+      this.resumes.forEach((resume) => {
+        resume.skills.forEach((skill) => {
+          var lowerSkill = skill.toLowerCase();
+          if (!this.allSkills.includes(lowerSkill)) {
+            this.allSkills.push(lowerSkill);
+          }
+        });
+      });
+      console.log(this.allSkills);
+    },
   },
 };
 </script>
@@ -114,6 +141,8 @@ export default {
   <h1>All Resumes</h1>
   Search by Last Name:
   <input v-model="last_nameFilter" placeholder="Search resumes..." type="text" />
+  <!-- Search by skill: -->
+  <!-- <input v-model="skillFilter" placeholder="Search resumes..." type="text" /> -->
 
   <section id="why-us" class="why-us">
     <div class="container">
@@ -123,7 +152,11 @@ export default {
             <span><img :src="resume.photo" hight="200" width="200" /></span>
             <h4>{{ resume.first_name + " " + resume.last_name }}</h4>
           </router-link>
-          <p>{{ resume.skills }}</p>
+          <ul class="list-unstyled">
+            <li class="mb-2" v-for="skill in resume.skills" :key="skill">
+              {{ skill }}
+            </li>
+          </ul>
         </div>
       </div>
     </div>
